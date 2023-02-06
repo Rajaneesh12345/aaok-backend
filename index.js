@@ -9,6 +9,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use('/', (req, res) => {
+	res.send('Welcome to the AAOK API!');
+});
 app.use('/api', searchRouter);
 
 const port = process.env.PORT || 5000;
