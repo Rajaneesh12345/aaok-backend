@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/', (req, res) => {
-	res.send('Welcome to the AAOK API!');
+	res.status(200).json({ message: 'Welcome to the AAOK API!' });
 });
 app.use('/api', searchRouter);
 
