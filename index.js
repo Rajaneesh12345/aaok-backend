@@ -16,10 +16,14 @@ app.use('/', (req, res) => {
 	connection.connect(err => {
 		if (err) {
 			console.log(err);
+			res.status(504).json({
+				message: 'Error connecting to database.',
+				err,
+			});
 		} else {
 			console.log('Connected to database.');
 			connection.query(
-				'SELECT * FROM picture_links LIMIT 10',
+				'SELECT * FROM picture_links LIMIT 1',
 				(err, result) => {
 					// console.log(result);
 					res.status(200).json({
