@@ -16,7 +16,7 @@ app.use('/safe', (req, res) => {
 		message: 'Welcome to the AAOK API!',
 	});
 });
-app.use('/', (req, res) => {
+app.get('/test', (req, res) => {
 	const connection = getNewConnectionObject();
 	connection.connect(err => {
 		if (err) {
