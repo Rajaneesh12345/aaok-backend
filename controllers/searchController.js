@@ -20,7 +20,7 @@ exports.search = (req, res) => {
 				string += `WHERE ${ref.Calligraphy} IN (${calligraphy + ''}) `;
 				continue;
 			} else {
-				string += `WHERE picture_links.link is NOT NULL `;
+				string += `WHERE people.PersonId is NOT NULL `;
 			}
 		}
 		if (key === 'Inscription Type' && advancedFilters[key].length >= 1) {
@@ -112,7 +112,6 @@ exports.getIndividualInfo = (req, res) => {
 				result: [],
 			});
 		}
-		// console.log(result);
 		res.status(200).json({
 			ok: true,
 			data: result[0],
