@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+const mysql = require('mysql');
 
 function getNewConnectionObject() {
 	// const connection = mysql.createConnection({
@@ -66,49 +66,3 @@ const ref = {
 };
 
 module.exports = { getNewConnectionObject, string, ref };
-
-const obj = {
-	Calligraphy: ['sealCursive', 'regular'], //
-	'Inscription Type': [
-		'agnatic',
-		'agnaticAssociative',
-		'associative',
-		'singleName',
-	],
-	'Government Post': [
-		'accountant',
-		'censor',
-		'commander',
-		'governor',
-		'guard',
-		'inspector',
-		'magistrate', //
-		'minister',
-		'primeMinister', //
-		'secretary',
-		'stateCouncilor',
-		'govUndeterminedOther',
-	],
-	Location: [
-		'jadeStreamRavine',
-		'manmulcho',
-		'myogilsangBuddha',
-		'nineDragonFalls',
-	],
-	'Social Status': [
-		'chungin',
-		'commoner',
-		'female',
-		'marginalizedYangban',
-		'monk',
-		'slave',
-		'yangban',
-		'ssUndetermined',
-	],
-	'Degree Holders': [
-		'civilExam',
-		'militaryExam',
-		'technicalExam',
-		'dhUndetermined',
-	],
-};
