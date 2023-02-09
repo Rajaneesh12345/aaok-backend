@@ -11,6 +11,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api', searchRouter);
+app.use('/safe', (req, res) => {
+	res.status(200).json({
+		message: 'Welcome to the AAOK API!',
+	});
+});
 app.use('/', (req, res) => {
 	const connection = getNewConnectionObject();
 	connection.connect(err => {
