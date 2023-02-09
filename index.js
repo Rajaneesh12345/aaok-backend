@@ -26,15 +26,18 @@ app.use('/', (req, res) => {
 				err,
 			});
 		} else {
-			console.log('Connected to database.');
 			connection.query(
 				'SELECT * FROM picture_links LIMIT 1',
 				(err, result) => {
 					// console.log(result);
-					res.status(200).json({
-						message: 'Welcome to the AAOK API!',
-						result,
-					});
+					if (err) {
+						res.status(504).json({ err });
+					} else {
+						res.status(200).json({
+							message: 'Welcome to the AAOK API!',
+							result,
+						});
+					}
 				}
 			);
 		}
