@@ -14,6 +14,7 @@ app.use('/api', searchRouter);
 app.use('/', (req, res) => {
 	res.status(200).json({ message: 'Welcome to the AAOK API!' });
 });
+
 const connection = getNewConnectionObject();
 connection.connect(err => {
 	if (err) {
