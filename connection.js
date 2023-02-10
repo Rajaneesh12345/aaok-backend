@@ -1,19 +1,18 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 function getNewConnectionObject() {
-	// const connection = mysql.createConnection({
-	// 	host: process.env.MYSQL_HOST,
-	// 	user: process.env.MYSQL_USER,
-	// 	password: process.env.MYSQL_PASSWORD,
-	// 	database: process.env.MYSQL_DBNAME,
-	// });
-
 	const connection = mysql.createConnection({
-		host: 'aaok.cqbyrq1rhiy1.us-east-2.rds.amazonaws.com',
-		user: 'admin',
-		password: '12345678',
-		database: 'stiller',
+		host: process.env.MYSQL_HOST,
+		user: process.env.MYSQL_USER,
+		password: process.env.MYSQL_PASSWORD,
+		database: process.env.MYSQL_DBNAME,
 	});
+	// const connection = mysql.createConnection({
+	// 	host: 'localhost',
+	// 	user: 'root',
+	// 	password: 'Raj@142181',
+	// 	database: 'stiller',
+	// });
 	return connection;
 }
 
