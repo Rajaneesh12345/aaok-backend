@@ -99,6 +99,7 @@ exports.search = (req, res) => {
 			result,
 		});
 	});
+	connection.end();
 };
 
 exports.getIndividualInfo = (req, res) => {
@@ -117,4 +118,5 @@ exports.getIndividualInfo = (req, res) => {
 			data: result[0],
 		});
 	});
+	connection.end();
 };

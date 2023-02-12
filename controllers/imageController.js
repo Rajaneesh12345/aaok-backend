@@ -14,7 +14,7 @@ exports.getImg = (req, res) => {
 					result: [],
 				});
 			} else {
-				console.log(result);
+				// console.log(result);
 				res.status(200).json({
 					ok: true,
 					result,
@@ -22,6 +22,7 @@ exports.getImg = (req, res) => {
 			}
 		}
 	);
+	connection.end();
 };
 
 exports.getImgData = (req, res) => {
@@ -44,4 +45,5 @@ exports.getImgData = (req, res) => {
 			}
 		}
 	);
+	connection.end();
 };
