@@ -2,7 +2,6 @@ let { getNewConnectionObject, string: str, ref } = require('../connection');
 
 exports.search = (req, res) => {
 	const connection = getNewConnectionObject();
-
 	const {
 		filters: { advancedFilters, nameFilter },
 		sort,
@@ -21,6 +20,7 @@ exports.search = (req, res) => {
 				continue;
 			} else {
 				string += `WHERE people.PersonId is NOT NULL `;
+				// string += `WHERE LocationEngl is NOT NULL `;
 			}
 		}
 		if (key === 'Inscription Type' && advancedFilters[key].length >= 1) {
@@ -86,6 +86,28 @@ exports.search = (req, res) => {
 		}
 	}
 
+	switch (sort) {
+		case 'Name (A-Z)':
+			string += `ORDER BY NameEnglish ASC`;
+			break;
+		case 'Name (Z-A)':
+			string += `ORDER BY NameEnglish DESC`;
+			break;
+		case 'Location (A-Z)':
+			string += `ORDER BY LocationEngl ASC`;
+			break;
+		case 'Location (Z-A)':
+			string += `ORDER BY LocationEngl DESC`;
+			break;
+		case 'Reign (Old-New)':
+			string += `ORDER BY ReignEnglish DESC`;
+			break;
+		case 'Reign (New-Old)':
+			string += `ORDER BY ReignEnglish ASC`;
+			break;
+		default:
+			string += ``;
+	}
 	connection.query(string, (err, result) => {
 		if (err) {
 			console.log(err);
