@@ -7,7 +7,7 @@ exports.search = (req, res) => {
 		filters: { advancedFilters, nameFilter },
 		sort,
 	} = req.body;
-
+	// console.log(advancedFilters);
 	let string = str;
 	for (let key in advancedFilters) {
 		if (key === 'Calligraphy') {
@@ -74,7 +74,16 @@ exports.search = (req, res) => {
 				return acc;
 			}, '')}" `;
 		}
+		if (key === 'Travel Period' && advancedFilters[key].length >= 1) {
+			string += `AND ${ref['Travel Period']} REGEXP "${advancedFilters[
+				key
+			].reduce((acc, curr) => {
+				acc += curr + '|';
+				return acc;
+			}, '')}" `;
+		}
 	}
+	// console.log(string);
 	switch (sort) {
 		case 'Name (A-Z)':
 			string += `ORDER BY NameEnglish ASC`;

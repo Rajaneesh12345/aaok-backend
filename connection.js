@@ -62,6 +62,7 @@ const ref = {
 	'Government Post': 'GovTitleEnglish',
 	Location: 'LocationEngl',
 	'Degree Holders': 'ExamEnglish',
+	'Travel Period': 'ReignEnglish',
 };
 
 module.exports = { getNewConnectionObject, string, ref };
