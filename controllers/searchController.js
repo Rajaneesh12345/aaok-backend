@@ -2,6 +2,7 @@ let { getNewConnectionObject, string: str, ref } = require('../connection');
 
 exports.search = (req, res) => {
 	const connection = getNewConnectionObject();
+
 	const {
 		filters: { advancedFilters, nameFilter },
 		sort,
@@ -20,7 +21,6 @@ exports.search = (req, res) => {
 				continue;
 			} else {
 				string += `WHERE people.PersonId is NOT NULL `;
-				// string += `WHERE LocationEngl is NOT NULL `;
 			}
 		}
 		if (key === 'Inscription Type' && advancedFilters[key].length >= 1) {
@@ -41,27 +41,20 @@ exports.search = (req, res) => {
 			continue;
 		}
 		if (key === 'Government Post' && advancedFilters[key].length >= 1) {
-			string += `AND ${ref['Government Post']} IN (${advancedFilters[
+			string += `AND ${ref['Government Post']} REGEXP "${advancedFilters[
 				key
 			].reduce((acc, curr) => {
-				if (acc === '') {
-					return acc + "'" + curr + "'";
-				} else {
-					return acc + ",'" + curr + "'";
-				}
-			}, '')}) `;
+				acc += curr + '|';
+				return acc;
+			}, '')}" `;
 		}
 		if (key === 'Location' && advancedFilters[key].length >= 1) {
-			string += `AND ${ref.Location} IN (${advancedFilters[key].reduce(
+			string += `AND ${ref.Location} REGEXP "${advancedFilters[key].reduce(
 				(acc, curr) => {
-					if (acc === '') {
-						return acc + "'" + curr + "'";
-					} else {
-						return acc + ",'" + curr + "'";
-					}
-				},
-				''
-			)}) `;
+					acc += curr + '|';
+					return acc;
+				}
+			)}" `;
 		}
 		if (key === 'Social Status' && advancedFilters[key].length >= 1) {
 			advancedFilters[key].forEach(i => {
@@ -74,18 +67,14 @@ exports.search = (req, res) => {
 			});
 		}
 		if (key === 'Degree Holders' && advancedFilters[key].length >= 1) {
-			string += `AND ${ref['Degree Holders']} IN (${advancedFilters[
+			string += `AND ${ref['Degree Holders']} REGEXP "${advancedFilters[
 				key
 			].reduce((acc, curr) => {
-				if (acc === '') {
-					return acc + "'" + curr + "'";
-				} else {
-					return acc + ",'" + curr + "'";
-				}
-			}, '')}) `;
+				acc += curr + '|';
+				return acc;
+			}, '')}" `;
 		}
 	}
-
 	switch (sort) {
 		case 'Name (A-Z)':
 			string += `ORDER BY NameEnglish ASC`;
