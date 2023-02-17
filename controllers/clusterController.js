@@ -34,7 +34,7 @@ exports.getRelated = (req, res) => {
 
 	conn.query(
 		`
-    SELECT ar.PersonB AS OtherPersonId
+    SELECT DISTINCT ar.PersonB AS OtherPersonId
           ,art.RoleBEnglish
           ,art.RoleBKorean
           ,art.RoleBHancha
