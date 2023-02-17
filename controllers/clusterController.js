@@ -3,7 +3,6 @@ const { getNewConnectionObject } = require('../connection');
 exports.clusterQuery = (req, res) => {
 	const clusterId = req.params['cid'];
 	const conn = getNewConnectionObject();
-
 	conn.query(
 		`
     SELECT p_in.PersonId, p.NameEnglish, p.NameKorean, p.NameHancha
@@ -22,9 +21,11 @@ exports.clusterQuery = (req, res) => {
 					result: [],
 				});
 			}
+
 			res.status(200).json(result);
 		}
 	);
+	conn.end();
 };
 
 exports.getRelated = (req, res) => {
@@ -58,9 +59,11 @@ exports.getRelated = (req, res) => {
 					result: [],
 				});
 			}
+			// console.log(result);
 			res.status(200).json(result);
 		}
 	);
+	conn.end();
 };
 
 exports.getNumberOfLayers = (req, res) => {
@@ -85,4 +88,5 @@ exports.getNumberOfLayers = (req, res) => {
 			res.status(200).json(result);
 		}
 	);
+	conn.end();
 };

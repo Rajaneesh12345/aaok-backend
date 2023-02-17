@@ -123,7 +123,8 @@ exports.search = (req, res) => {
 };
 
 exports.getIndividualInfo = (req, res) => {
-	const { id } = req.body;
+	const { id } = req.params;
+	// console.log('id', id);
 	const connection = getNewConnectionObject();
 	connection.query(`${str} WHERE people.PersonId="${id}"`, (err, result) => {
 		if (err) {
@@ -133,6 +134,7 @@ exports.getIndividualInfo = (req, res) => {
 				result: [],
 			});
 		}
+		// console.log(result[0]);
 		res.status(200).json({
 			ok: true,
 			data: result[0],

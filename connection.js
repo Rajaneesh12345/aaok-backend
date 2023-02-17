@@ -20,6 +20,8 @@ let string = `
 SELECT people.PersonId,
       people.NameEnglish,
       NameKorean,
+      BirthYear,
+      DeathYear,
       NameHancha,
       IsChungin,
       IsCommoner,
@@ -42,7 +44,7 @@ SELECT people.PersonId,
       ReignEnglish,
       picture_links.link,LocationInPicture,pictures.DateTaken as picture_date,LocationEngl, SublocationEngl, SublocationEnglTranslit, LocationEnglTranslit,
       SublocationHancha, SublocationHancha, 
-      LocationKorean, LocationHancha
+      LocationKorean, LocationHancha, ContainedInCluster, LayerNumber
 FROM people
 LEFT JOIN pictured_in ON pictured_in.PersonId = people.PersonId
 LEFT JOIN pictures ON pictures.PictureId = pictured_in.PictureId
@@ -53,6 +55,7 @@ LEFT JOIN government_individual ON government_individual.PersonId=people.PersonI
 LEFT JOIN government_title ON government_title.GovernmentTitleId=government_individual.GovernmentTitleId
 LEFT JOIN clusters ON clusters.ClusterId=pictured_in.ContainedInCluster
 LEFT JOIN reigns_lived_in ON reigns_lived_in.PeopleId=people.PersonId
+left join layers on layers.ClusterId=clusters.ClusterId 
 LEFT JOIN reigns ON reigns.ReignId=reigns_lived_in.ReignId
 LEFT JOIN picture_links ON picture_links.PictureId=pictures.PictureId `;
 

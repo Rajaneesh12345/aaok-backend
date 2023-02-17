@@ -12,6 +12,6 @@ router.get('/related/:pid', clusterController.getRelated);
 router.get('/number-of-layers/:cid', clusterController.getNumberOfLayers);
 
 router.post('/searchfiltered', searchController.search);
-router.post('/individual', searchController.getIndividualInfo);
+router.get('/individual/:id', searchController.getIndividualInfo);
 
 module.exports = router;
