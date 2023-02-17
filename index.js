@@ -1,5 +1,5 @@
 const express = require('express');
-const searchRouter = require('./routes/searchRoutes');
+const searchRouter = require('./routes/Routes');
 require('dotenv').config();
 const { getNewConnectionObject } = require('./connection');
 const cors = require('cors');
