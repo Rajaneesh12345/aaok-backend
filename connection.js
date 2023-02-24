@@ -7,12 +7,6 @@ function getNewConnectionObject() {
 		password: process.env.MYSQL_PASSWORD,
 		database: process.env.MYSQL_DBNAME,
 	});
-	// const connection = mysql.createConnection({
-	// 	host: 'localhost',
-	// 	user: 'root',
-	// 	password: 'Raj@142181',
-	// 	database: 'stiller',
-	// });
 	return connection;
 }
 
