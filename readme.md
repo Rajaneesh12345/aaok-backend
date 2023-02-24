@@ -1,4 +1,4 @@
-# About
+<!-- # About
 This is project consists of a React.js frontend, which is compiled and served by an Express.js backend. The backend is the only application running on the web host. The Express.js backend is also used to connect to a MySQL server and manages that communication so that it is not visible to users. The Express.js application is configured to route requests to URLs that it does not define to the compiled React.js frontend, which uses its own separate routing to serve responses. The React.js frontend can make requests to the backend if it needs information from the MySQL server at `localhost:5000`, the address the backend is configured to listen on.
 # Instructions
 
@@ -67,4 +67,34 @@ On the server...
 5. Enter into the 'client/' directory
 6. execute: 'npm install' to update react project dependencies
 7. execute: 'npm run build --production' to build the React application so that its changes are included in the backend's build directory
-9. execute: 'sudo apachectl restart' to restart the web server. Your changes should now be live on the website.
+9. execute: 'sudo apachectl restart' to restart the web server. Your changes should now be live on the website. -->
+
+# Aaok Backend
+
+A brief description of what this project does and who it's for
+
+## Installation
+
+    $ git clone https://github.com/Rajaneesh12345/aaok-backend
+    $ cd aaok-backend
+    $ npm install
+    The project is up and running in your local machine at PORT 5000
+
+    For development purposes, you can use the following command to run the project
+    $ npm run dev
+
+## Configure app
+
+create a `.env` in the root folder and add the required environmental variables. You will need:
+
+-  **MYSQL_DBNAME** => the name of the database;
+-  **MYSQL_HOST** => the host of the database;
+-  **MYSQL_PASSWORD** => the password of the database;
+-  **MYSQL_USER** => the user of the database;
+
+## Running the project
+
+    $ npm start
+    $ npm run dev
+
+## [Routes](./routes/routes.md)
