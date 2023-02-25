@@ -84,6 +84,9 @@ exports.search = (req, res) => {
 		}
 	}
 	// console.log(string);
+	if (nameFilter) {
+		string += `AND people.NameEnglish REGEXP "${nameFilter}" `;
+	}
 	switch (sort) {
 		case 'Name (A-Z)':
 			string += `ORDER BY NameEnglish ASC`;
@@ -106,6 +109,7 @@ exports.search = (req, res) => {
 		default:
 			string += ``;
 	}
+	// console.log(string);
 	connection.query(string, (err, result) => {
 		if (err) {
 			console.log(err);
