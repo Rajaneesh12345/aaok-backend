@@ -20,21 +20,21 @@ exports.search = (req, res) => {
 				string += `WHERE ${ref.Calligraphy} IN (${calligraphy + ''}) `;
 				continue;
 			} else {
-				string += `WHERE people.PersonId is NOT NULL `;
+				string += `WHERE P.PersonId is NOT NULL `;
 			}
 		}
 		if (key === 'Inscription Type' && advancedFilters[key].length >= 1) {
 			advancedFilters[key].map(i => {
 				if (i === 'agnatic') {
-					string += `AND isAgnatic = 1 `;
+					string += `AND C.IsAgnatic = 1 `;
 					return 'IsAgnatic';
 				}
 				if (i === 'agnaticAssociative') {
-					string += `AND IsAgnaticAssociative = 1 `;
+					string += `AND C.IsAgnaticAssociative = 1 `;
 					return 'IsAgnaticAssociative';
 				}
 				if (i === 'associative') {
-					string += `AND IsAssociative = 1 `;
+					string += `AND C.IsAssociative = 1 `;
 					return 'IsAssociative';
 				}
 			});
@@ -85,7 +85,7 @@ exports.search = (req, res) => {
 	}
 	// console.log(string);
 	if (nameFilter) {
-		string += `AND people.NameEnglish REGEXP "${nameFilter}" `;
+		string += `AND P.NameEnglish REGEXP "${nameFilter}" `;
 	}
 	switch (sort) {
 		case 'Name (A-Z)':
@@ -130,7 +130,7 @@ exports.getIndividualInfo = (req, res) => {
 	const { id } = req.params;
 	// console.log('id', id);
 	const connection = getNewConnectionObject();
-	connection.query(`${str} WHERE people.PersonId="${id}"`, (err, result) => {
+	connection.query(`${str} WHERE P.PersonId="${id}"`, (err, result) => {
 		if (err) {
 			console.log(err);
 			return res.status(200).json({

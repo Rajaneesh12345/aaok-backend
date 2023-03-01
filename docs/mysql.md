@@ -6,4 +6,4 @@ This is a video tutorial on how to download and install MySQL workbench on your 
 
 It is better to follow the above video and do the necessary downloads and installations.
 
-**IMPORTANT:** Do not forget the password you set for MySQL workbench. You will need it later.
+**IMPORTANT:** Do not forget the password you set for MySQL workbench. You will need it later to work on localhost.
