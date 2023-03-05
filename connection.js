@@ -1,18 +1,18 @@
 const mysql = require('mysql2');
 
 function getNewConnectionObject() {
-	const connection = mysql.createConnection({
-		host: process.env.MYSQL_HOST,
-		user: process.env.MYSQL_USER,
-		password: process.env.MYSQL_PASSWORD,
-		database: process.env.MYSQL_DBNAME,
-	});
 	// const connection = mysql.createConnection({
-	// 	host: '127.0.0.1',
-	// 	user: 'root',
-	// 	password: 'Raj@142181',
-	// 	database: 'stiller_new',
+	// 	host: process.env.MYSQL_HOST,
+	// 	user: process.env.MYSQL_USER,
+	// 	password: process.env.MYSQL_PASSWORD,
+	// 	database: process.env.MYSQL_DBNAME,
 	// });
+	const connection = mysql.createConnection({
+		host: '127.0.0.1',
+		user: 'root',
+		password: 'Raj@142181',
+		database: 'stiller_new',
+	});
 	return connection;
 }
 

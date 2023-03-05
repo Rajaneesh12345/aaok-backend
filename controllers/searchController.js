@@ -43,17 +43,24 @@ exports.search = (req, res) => {
 		if (key === 'Government Post' && advancedFilters[key].length >= 1) {
 			string += `AND ${ref['Government Post']} REGEXP "${advancedFilters[
 				key
-			].reduce((acc, curr) => {
+			].reduce((acc, curr, i, arr) => {
+				if (i === arr.length - 1) return (acc += curr);
 				acc += curr + '|';
 				return acc;
 			}, '')}" `;
 		}
 		if (key === 'Location' && advancedFilters[key].length >= 1) {
+			if (advancedFilters[key][0] === 'locUndeterminedOther') {
+				string += `AND L.LocationEngl NOT REGEXP "jade Stream Ravine|manmulch/'o|myogilsang Buddha|nine Dragon Falls|Podŏk Hermitage|tenThousand Falls Ravine|three Buddha Rock"`;
+				continue;
+			}
 			string += `AND ${ref.Location} REGEXP "${advancedFilters[key].reduce(
-				(acc, curr) => {
+				(acc, curr, i, arr) => {
+					if (i === arr.length - 1) return (acc += curr);
 					acc += curr + '|';
 					return acc;
-				}
+				},
+				''
 			)}" `;
 		}
 		if (key === 'Social Status' && advancedFilters[key].length >= 1) {
@@ -69,7 +76,8 @@ exports.search = (req, res) => {
 		if (key === 'Degree Holders' && advancedFilters[key].length >= 1) {
 			string += `AND ${ref['Degree Holders']} REGEXP "${advancedFilters[
 				key
-			].reduce((acc, curr) => {
+			].reduce((acc, curr, i, arr) => {
+				if (i === arr.length - 1) return (acc += curr);
 				acc += curr + '|';
 				return acc;
 			}, '')}" `;
@@ -77,7 +85,8 @@ exports.search = (req, res) => {
 		if (key === 'Travel Period' && advancedFilters[key].length >= 1) {
 			string += `AND ${ref['Travel Period']} REGEXP "${advancedFilters[
 				key
-			].reduce((acc, curr) => {
+			].reduce((acc, curr, i, arr) => {
+				if (i === arr.length - 1) return (acc += curr);
 				acc += curr + '|';
 				return acc;
 			}, '')}" `;
