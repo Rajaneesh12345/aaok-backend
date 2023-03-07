@@ -1,18 +1,18 @@
 const mysql = require('mysql2');
 
 function getNewConnectionObject() {
-	// const connection = mysql.createConnection({
-	// 	host: process.env.MYSQL_HOST,
-	// 	user: process.env.MYSQL_USER,
-	// 	password: process.env.MYSQL_PASSWORD,
-	// 	database: process.env.MYSQL_DBNAME,
-	// });
 	const connection = mysql.createConnection({
-		host: '127.0.0.1',
-		user: 'root',
-		password: 'Raj@142181',
-		database: 'stiller_new',
+		host: process.env.MYSQL_HOST,
+		user: process.env.MYSQL_USER,
+		password: process.env.MYSQL_PASSWORD,
+		database: process.env.MYSQL_DBNAME,
 	});
+	// const connection = mysql.createConnection({
+	// 	host: '127.0.0.1',
+	// 	user: 'root',
+	// 	password: 'Raj@142181',
+	// 	database: 'stiller_new',
+	// });
 	return connection;
 }
 
@@ -22,7 +22,7 @@ P.IsChungin, P.IsCommoner, P.IsFemale, P.IsMarginalizedYangban, P.IsMonk,
     P.CalligraphySealCursive, E.ExamEnglish, E.ExamEnglTranslit, E.ExamHancha, 
     E.ExamKorean, ET.DateTaken AS date_of_exam, GI.FirstYearInGovPosition, 
     GT.GovTitleEnglish, GT.GovTitleEnglTranslit, GT.GovTitleHancha, 
-    GT.GovTitleKorean, C.IsAgnatic, C.IsAgnaticAssociative, C.IsAssociative, 
+    GT.GovTitleKorean, C.IsAgnaticCluster, C.IsAgnaticAssociativeCluster, C.IsAssociateCluster, C.IsSingleName,
     R.ReignEnglish,R.ReignKorean,R.ReignHancha , PIC.Link, PI.LocationInPicture, PIC.DateTaken AS date_of_picture, 
     L.LocationEngl, L.SublocationEngl, L.SubLocationEnglTranslit, L.LocationEnglTranslit, 
     L.SublocationHancha, L.LocationKorean, L.LocationHancha, PI.ContainedInCluster, L.SublocationKorean
@@ -37,8 +37,8 @@ LEFT JOIN government_title AS GT
 ON GI.GovernmentTitleId = GT.GovernmentTitleId
 LEFT JOIN pictured_in AS PI
 ON P.PersonId = PI.PersonId
-LEFT JOIN clusters AS C
-ON PI.ContainedInCluster = C.ClusterId
+LEFT JOIN inscriptiontype AS C
+ON P.PersonId = C.PersonId
 LEFT JOIN reigns AS R
 ON P.ReignId = R.ReignId
 LEFT JOIN pictures AS PIC

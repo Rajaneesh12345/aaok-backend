@@ -26,16 +26,20 @@ exports.search = (req, res) => {
 		if (key === 'Inscription Type' && advancedFilters[key].length >= 1) {
 			advancedFilters[key].map(i => {
 				if (i === 'agnatic') {
-					string += `AND C.IsAgnatic = 1 `;
+					string += `AND C.IsAgnaticCluster = 1 `;
 					return 'IsAgnatic';
 				}
 				if (i === 'agnaticAssociative') {
-					string += `AND C.IsAgnaticAssociative = 1 `;
+					string += `AND C.IsAgnaticAssociativeCluster = 1 `;
 					return 'IsAgnaticAssociative';
 				}
 				if (i === 'associative') {
-					string += `AND C.IsAssociative = 1 `;
+					string += `AND C.IsAssociateCluster = 1 `;
 					return 'IsAssociative';
+				}
+				if (i === 'singleName') {
+					string += `AND C.IsSingleName = 1 `;
+					return;
 				}
 			});
 			continue;
